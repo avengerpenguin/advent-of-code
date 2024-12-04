@@ -6,3 +6,4 @@ import Compare
 main = do
         contents <- readFile "input"
         print $ compareDistance contents
+        print $ calculateSimilarityFromString contents
