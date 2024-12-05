@@ -34,3 +34,17 @@ main = hspec $ do
                  , "8 6 4 4 1"
                  , "1 3 6 7 9"
              ] `shouldBe` 2
+
+    describe "checkSafeWithRemoval" $ do
+        it "says example 1 is safe" $ do
+            checkSafeWithRemoval [7, 6, 4, 2, 1] `shouldBe` True
+        it "says example 2 is unsafe" $ do
+            checkSafeWithRemoval [1, 2, 7, 8, 9] `shouldBe` False
+        it "says example 3 is unsafe" $ do
+            checkSafeWithRemoval [9, 7, 6, 2, 1] `shouldBe` False
+        it "says example 4 is safe due to removal" $ do
+            checkSafeWithRemoval [1, 3, 2, 4, 5] `shouldBe` True
+        it "says example 5 is safe due to removal" $ do
+            checkSafeWithRemoval [8, 6, 4, 4, 1] `shouldBe` True
+        it "says example 6 is safe" $ do
+            checkSafeWithRemoval [1, 3, 6, 7, 9] `shouldBe` True

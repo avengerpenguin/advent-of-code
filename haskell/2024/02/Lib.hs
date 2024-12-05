@@ -33,3 +33,22 @@ checkSafeFromLines [] = 0
 checkSafeFromLines (x:xs) = case (checkSafeFromString(x)) of
     True    -> 1 + checkSafeFromLines(xs)
     False   ->  checkSafeFromLines(xs)
+
+
+attemptRemoval :: [Int] -> Int -> Bool
+attemptRemoval xs 0 = False
+attemptRemoval xs n = let partitions = splitAt (n - 1) xs
+                        in let newList = (fst partitions) ++ (drop 1 $ snd partitions)
+                            in checkSafe newList || attemptRemoval xs (n - 1)
+
+checkSafeWithRemoval :: [Int] -> Bool
+checkSafeWithRemoval xs = (checkSafe xs) || (attemptRemoval xs (length xs))
+
+checkSafeFromStringWithRemoval :: String -> Bool
+checkSafeFromStringWithRemoval = checkSafeWithRemoval . (map read) . words
+
+checkSafeFromLinesWithRemoval :: [String] -> Int
+checkSafeFromLinesWithRemoval [] = 0
+checkSafeFromLinesWithRemoval (x:xs) = case (checkSafeFromStringWithRemoval(x)) of
+    True    -> 1 + checkSafeFromLinesWithRemoval(xs)
+    False   ->  checkSafeFromLinesWithRemoval(xs)
