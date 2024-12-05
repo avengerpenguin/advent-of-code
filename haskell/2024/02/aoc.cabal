@@ -1,0 +1,34 @@
+cabal-version:      3.0
+name:               aoc
+version:            0.1.0.0
+license:            GPL-3.0-only
+author:             Ross Fenning
+maintainer:         github@rossfenning.co.uk
+build-type:         Simple
+
+common warnings
+    ghc-options: -Wall
+
+library lib
+    exposed-modules:    Lib
+    hs-source-dirs:     .
+    build-depends:      base == 4.*, extra, containers
+
+executable aoc
+    main-is:          Main.hs
+    build-depends:    base == 4.*, lib, extra, containers
+    hs-source-dirs:   .
+    default-language: Haskell2010
+
+
+test-suite test
+  default-language      : Haskell2010
+  type                  : exitcode-stdio-1.0
+  hs-source-dirs        : .
+  main-is               : Spec.hs
+  build-depends         :       base == 4.*
+                              , hspec == 2.*
+                              , lib
+                              , extra
+                              , containers
+  other-modules: Lib
