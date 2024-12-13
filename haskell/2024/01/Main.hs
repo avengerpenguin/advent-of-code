@@ -1,9 +1,9 @@
 module Main where
 
-import System.IO
 import Compare
+import System.IO
 
 main = do
-        contents <- readFile "input"
-        print $ compareDistance contents
-        print $ calculateSimilarityFromString contents
+  contents <- readFile "input"
+  print $ compareDistance contents
+  print $ calculateSimilarityFromString contents

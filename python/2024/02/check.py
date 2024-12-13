@@ -2,7 +2,7 @@ import sys
 from typing import Iterable
 
 
-def lines() -> Iterable[str]:
+def get_lines() -> Iterable[list[int]]:
     for line in sys.stdin:
         yield [int(x) for x in line.split()]
 
@@ -35,14 +35,14 @@ def check_safe_with_removal(line):
         return True
 
     for n in range(len(line)):
-        new_list = line[:n] + line[n+1:]
+        new_list = line[:n] + line[n + 1 :]
         if check_safe(new_list):
             return True
 
     return False
 
 
-lines = list(lines())
+lines: list[list[int]] = list(get_lines())
 
 print(sum(check_safe(line) for line in lines))
 print(sum(check_safe_with_removal(line) for line in lines))
